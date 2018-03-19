@@ -5,7 +5,7 @@
  */
 package mazesolver.Util;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -13,10 +13,10 @@ import java.util.List;
  * @author john
  */
 public class DepthFirstSolver {
-    public static boolean searchPath(int[][] maze, int x, int y, List<Integer> path){
+    public static boolean searchPath(int[][] maze, int x, int y, ArrayList<Integer> xpath, ArrayList<Integer> ypath){
         if  (maze[y][x]==9) {
-            path.add(x);
-            path.add(y);
+            xpath.add(x);
+            ypath.add(y);
             return true;
         }
         
@@ -25,33 +25,33 @@ public class DepthFirstSolver {
            
             int dx = -1;
             int dy = 0;
-            if (searchPath(maze, x+dx, y+dy, path)) {
-               path.add(x);
-               path.add(y);
+            if (searchPath(maze, x+dx, y+dy, xpath, ypath)) {
+               xpath.add(x);
+               ypath.add(y);
                return true;
             }
             
             dx = 1;
             dy = 0;
-            if (searchPath(maze, x+dx, y+dy, path)) {
-               path.add(x);
-               path.add(y);
+            if (searchPath(maze, x+dx, y+dy, xpath, ypath)) {
+               xpath.add(x);
+               ypath.add(y);
                return true;
             }
             
             dx = 0;
             dy = -1;
-            if (searchPath(maze, x+dx, y+dy, path)) {
-               path.add(x);
-               path.add(y);
+            if (searchPath(maze, x+dx, y+dy, xpath, ypath)) {
+               xpath.add(x);
+               ypath.add(y);
                return true;
             }
             
             dx = 0;
             dy = 1;
-            if (searchPath(maze, x+dx, y+dy, path)) {
-               path.add(x);
-               path.add(y);
+            if (searchPath(maze, x+dx, y+dy, xpath, ypath)) {
+               xpath.add(x);
+               ypath.add(y);
                return true;
             }
         }

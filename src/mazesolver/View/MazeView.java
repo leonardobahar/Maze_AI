@@ -17,36 +17,19 @@ import mazesolver.Util.DepthFirstSolver;
  * @author john
  */
 public class MazeView extends JFrame{
-    private int[][] maze = 
-  { 
-    {1,1,1,1,1,1,1,1,1,1,1,1,1},
-    {1,0,1,0,1,0,1,0,0,0,0,0,1},
-    {1,0,1,0,0,0,1,0,1,1,1,0,1},
-    {1,0,0,0,1,1,1,0,0,0,0,0,1},
-    {1,0,1,0,0,0,0,0,1,1,1,0,1},
-    {1,0,1,0,1,1,1,0,1,0,0,0,1},
-    {1,0,1,0,1,0,0,0,1,1,1,0,1},
-    {1,0,1,0,1,1,1,0,1,0,1,0,1},
-    {1,0,0,0,0,0,0,9,0,0,1,0,1},
-    {1,1,1,1,1,1,1,1,1,1,1,1,1}
-  }; //goal at 11,8
-  /*
-    1 - Wall / Obstacles
+  private int[][] maze;
+  
+  private ArrayList<Integer> xpath;
+  private ArrayList<Integer> ypath;
     
-    2 - Visited Node
-    9 - Goal  
-  */
-  private final List<Integer> path = new ArrayList<Integer>();
-    
-  public MazeView(){
+  public MazeView(int[][] maze, ArrayList<Integer> xpath, ArrayList<Integer> ypath){
+    this.maze = maze;
+    this.xpath = xpath;
+    this.ypath = ypath;
     setTitle("Maze");
     setSize(640, 480);
     setLocation(0,0);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-    
-    //For visited path
-    DepthFirstSolver.searchPath(maze, 1, 1, path);
-    System.out.println(path);
   }
   
   @Override
@@ -72,9 +55,9 @@ public class MazeView extends JFrame{
             g.drawRect(30*col, 30*row, 30, 30);
         }
         
-        for (int i = 0; i < path.size(); i+=2) {
-            int pathX = path.get(i);
-            int pathY = path.get(i+1);
+        for (int i = 0; i < xpath.size(); i++) {
+            int pathX = xpath.get(i);
+            int pathY = ypath.get(i);
             if  (maze[pathY][pathX]!=9) {
                 g.setColor(Color.GREEN);
                 g.fillRect(pathX * 30, pathY * 30, 30, 30);
@@ -86,7 +69,10 @@ public class MazeView extends JFrame{
   public Thread getView(){
       Thread viewThread = new Thread(new Runnable(){
         public void run(){
-          MazeView view = new MazeView();
+          //For visited path
+          System.out.println("X Path : "+xpath);
+          System.out.println("Y Path : "+ypath);
+          MazeView view = new MazeView(maze, xpath, ypath);
           view.setVisible(true);
         }
       });
