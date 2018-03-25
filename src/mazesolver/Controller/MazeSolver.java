@@ -7,6 +7,7 @@ package mazesolver.Controller;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import mazesolver.Util.BreadthFirstSolver;
 import mazesolver.Util.DepthFirstSolver;
 import mazesolver.View.MazeView;
 
@@ -34,7 +35,7 @@ public class MazeSolver {
             {1,0,1,0,1,1,1,0,1,0,0,0,1},
             {1,0,1,0,1,0,0,0,1,1,1,0,1},
             {1,0,1,0,1,1,1,0,1,0,1,0,1},
-            {1,0,0,0,0,0,0,9,0,0,1,0,1},
+            {1,9,0,0,0,0,0,0,0,0,1,0,1},
             {1,1,1,1,1,1,1,1,1,1,1,1,1}
           }; //goal at 11,8
         /*
@@ -43,7 +44,8 @@ public class MazeSolver {
           2 - Visited Node
           9 - Goal  
         */
-        DepthFirstSolver.searchPath(maze, 1, 1, xpath, ypath);
+        BreadthFirstSolver.searchPath(maze, 1, 1, xpath, ypath);
+        //DepthFirstSolver.searchPath(maze, 1, 1, xpath, ypath);
         MazeView mazeView = new MazeView(maze, xpath, ypath);
         mazeView.getView().start();
     }

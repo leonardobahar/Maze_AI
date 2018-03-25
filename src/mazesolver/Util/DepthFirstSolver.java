@@ -38,15 +38,7 @@ public class DepthFirstSolver {
                ypath.add(y);
                return true;
             }
-            
-            dx = 0;
-            dy = -1;
-            if (searchPath(maze, x+dx, y+dy, xpath, ypath)) {
-               xpath.add(x);
-               ypath.add(y);
-               return true;
-            }
-            
+               
             dx = 0;
             dy = 1;
             if (searchPath(maze, x+dx, y+dy, xpath, ypath)) {
