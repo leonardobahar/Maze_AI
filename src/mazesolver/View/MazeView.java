@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import mazesolver.Util.DepthFirstSolver;
 
@@ -54,30 +55,20 @@ public class MazeView extends JFrame{
             g.setColor(Color.BLACK);
             g.drawRect(30*col, 30*row, 30, 30);
         }
-        
-        for (int i = 0; i < xpath.size(); i++) {
-            int pathX = xpath.get(i);
-            int pathY = ypath.get(i);
-            if  (maze[pathY][pathX]!=9) {
-                g.setColor(Color.GREEN);
-                g.fillRect(pathX * 30, pathY * 30, 30, 30);
-            }
+    }
+    
+    for (int i = xpath.size()-1; i >=0; i--) {
+        int pathX = xpath.get(i);
+        int pathY = ypath.get(i);
+        if  (maze[pathY][pathX]!=9) {
+            g.setColor(Color.GREEN);
+            g.fillRect(pathX * 30, pathY * 30, 30, 30);
+        }
+        try{
+            TimeUnit.MILLISECONDS.sleep(200);
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
         }
     }
   }
-  
-  public Thread getView(){
-      Thread viewThread = new Thread(new Runnable(){
-        public void run(){
-          //For visited path
-          System.out.println("X Path : "+xpath);
-          System.out.println("Y Path : "+ypath);
-          MazeView view = new MazeView(maze, xpath, ypath);
-          view.setVisible(true);
-        }
-      });
-      
-      return viewThread;
-  }
-  
 }

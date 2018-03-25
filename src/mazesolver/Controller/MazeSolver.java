@@ -33,9 +33,9 @@ public class MazeSolver {
             {1,0,0,0,1,1,1,0,0,0,0,0,1},
             {1,0,1,0,0,0,0,0,1,1,1,0,1},
             {1,0,1,0,1,1,1,0,1,0,0,0,1},
-            {1,0,1,0,1,0,0,0,1,1,1,0,1},
+            {1,0,1,0,1,9,0,0,1,1,1,0,1},
             {1,0,1,0,1,1,1,0,1,0,1,0,1},
-            {1,9,0,0,0,0,0,0,0,0,1,0,1},
+            {1,0,0,0,0,0,0,0,0,0,1,0,1},
             {1,1,1,1,1,1,1,1,1,1,1,1,1}
           }; //goal at 11,8
         /*
@@ -44,10 +44,11 @@ public class MazeSolver {
           2 - Visited Node
           9 - Goal  
         */
-        BreadthFirstSolver.searchPath(maze, 1, 1, xpath, ypath);
-        //DepthFirstSolver.searchPath(maze, 1, 1, xpath, ypath);
-        MazeView mazeView = new MazeView(maze, xpath, ypath);
-        mazeView.getView().start();
+        BreadthFirstSolver.searchPath(maze, 11, 8, xpath, ypath);
+        //DepthFirstSolver.searchPath(maze,11, 8, xpath, ypath);
+        JFrame mazeView = new MazeView(maze, xpath, ypath);
+        mazeView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mazeView.setVisible(true);
     }
     
 }
